@@ -1,0 +1,32 @@
+#ORIGIN 640, 512
+
+
+P=10
+H=15
+SP=22
+OP=.45
+FOR Y=1 TO 20
+    RS=RS+Y*SP
+    FOR X=1 TO 6
+        RV=INT((RND(0))*RS*2)-RS
+        C=H*cos((RV*PI/180))
+        S=H*SIN((RV*PI/180))
+        A=X*30 + RV*DP
+        B=-Y*30+RV*DP
+
+        X1=P+A+C-S
+        Y1=B+C+S
+
+        X2=P+A-C-S
+        Y2=B+C-S
+
+        X3=P+A-C+S
+        Y3=B-C-S
+
+        X4=P+A+C+S
+        Y4=B-C+S
+
+        LINE(X2, Y2)-(X1, Y1)-(X4, Y4)-(X3, Y3)-(X2, Y2)
+    NEXT X
+NEXT Y
+# GLCURSOR(0, Y3 - 20)
