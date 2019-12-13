@@ -1,0 +1,5 @@
+MODE 27
+ FOR Col% = 0 TO 256
+   COLOUR Col%
+   PRINT ":";Col%;
+ NEXT

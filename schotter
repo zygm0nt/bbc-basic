@@ -1,31 +1,34 @@
 MODE 27
-ORIGIN 140, 900 
+ORIGIN 240, 900 
 
-P=10
 H=15
 SP=22
 DP=.45
-SQ=50
+SQ=30
+RS=0.0
 
+
+
+GCOL 42
 FOR Y=1 TO 20
     RS=RS + Y*SP
     FOR X=1 TO 12 
-        RV=RAD(INT(RND(0)*RS*2)-RS)
-        C=H*COS((RV*PI/180))
-        S=H*SIN((RV*PI/180))
+        RV = RAD(RND(1) * (2 * RS) - RS)
+        C=(H*COS((RV*PI/180)))
+        S=(H*SIN((RV*PI/180)))
         A=X*SQ + RV*DP
         B=-Y*SQ + RV*DP
 
-        X1=P+A+C-S
+        X1=A+C-S
         Y1=B+C+S
 
-        X2=P+A-C-S
+        X2=A-C-S
         Y2=B+C-S
 
-        X3=P+A-C+S
+        X3=A-C+S
         Y3=B-C-S
 
-        X4=P+A+C+S
+        X4=A+C+S
         Y4=B-C+S
 
         LINE X2,Y2 , X1,Y1
@@ -34,3 +37,5 @@ FOR Y=1 TO 20
         LINE X3,Y3 , X2,Y2
     NEXT X
 NEXT Y
+END
+

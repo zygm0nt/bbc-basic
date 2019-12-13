@@ -1,0 +1,7 @@
+10 MODE 15
+20 FOR col%=0 TO 63
+30 FOR tint%=0 TO 192 STEP 64
+40 GCOL col% TINT tint%
+50 RECTANGLE FILL tint%*4,col%*16,256,16
+60 NEXT tint%
+70 NEXT col%

@@ -1,0 +1,37 @@
+100 REM Georg Nees "Schotter" reproduction - scruss, 2019-11
+  110 REM based on Processing 3 code by Jim Plaxco, www.artsnova.com
+  120 :
+  121 MODE 27
+  130 scrn_wd% = 2048: REM fixed screen size, unlike Processing
+  140 scrn_ht% = 1560 
+  150 columns% = 12
+  160 rows% = 22
+  170 sqsize% = FN_min(scrn_wd% / (columns% + 4), scrn_ht% / (rows% + 4))
+  180 padding% = 2 * sqsize%
+  190 randstep = 0.22
+  200 randsum = 0.0
+  210 randval = 0.0
+  220 dampen = 0.45
+  230 :
+  250 REM A$=GET$: REM PLOT 4, 0, 0: PLOT 5, 0, 0
+  260 FOR y% = 1 TO rows%
+  270   randsum = randsum + (y% * randstep)
+  280   FOR x% = 1 TO columns%
+  290     randval = RND(1) * (2 * randsum) - randsum
+  300     PROC_square((scrn_wd% / 2) - (sqsize% * columns% / 2) + (x% * sqsize%) - (sqsize% / 2) + INT(randval * dampen), scrn_ht% - (padding% + (y% * sqsize%) - (sqsize% / 2) + INT(randval * dampen)), sqsize%, randval)
+  310   NEXT x%
+  320 NEXT y%
+  330 PLOT 4, 0, 0: PLOT 5, 0, 0
+  340 END
+  350 :
+  360 DEF PROC_square(cx%, cy%, side, angle)
+  370 LOCAL r, i%, pm%
+  380 pm% = 4: REM plot mode - move = 4, draw = 5
+  390 r = (side / 2) / (SQR(2) / 2)
+  400 FOR i% = 0 TO 4
+  410   PLOT pm%, cx% + r * COS(RAD(angle + i% * 90 + 45)), cy% + r * SIN(RAD(angle + i% * 90 + 45))
+  420   pm% = 5
+  430 NEXT i%
+  440 ENDPROC
+  450 :
+  460 DEF FN_min(a%, b%) IF a% < b% THEN =a% ELSE =b%
